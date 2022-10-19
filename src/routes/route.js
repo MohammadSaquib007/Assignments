@@ -21,18 +21,10 @@ router.get('/movies', function (req, res){
 
 
     router.get('/movies/:indexMovies',function(req,res){
-
-     
       const movies= ['dilber','kgf','laila','sultan','hella']
-
-      //for(let i=0;i<movies.length;i++){
-        const index = req.params.indexMovies
-       
-        
-     return res.send(movies[index])
-       
-     // } 
-    })
+        const index = req.params.indexMovies 
+        return res.send(movies[index])
+        })
 
 
 
