@@ -1,32 +1,26 @@
 
-const axios = require("axios")
-const getDistrictsList = async function(req, res) {
-
+const londonTemp = async function(req, res) {
     try {
-        let id = req.query.district_id 
-        let date=req.query.data
-        console.log(" district: ", id)
 
         let options = {
-           method: "get",
-            url: `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id=${district_id}&date=${date}` 
-        }
-        let response = await axios(options)
+            method: "get",
+            url: `http://api.openweathermap.org/data/2.5/weather?q=London&appid=d03c6511ac589c04857f3a2bc06681fd`
 
-        let districts = response.data
+        };
+        const london = await axios(options);
 
-        console.log(response.data)
-        res.status(200).send({ msg: "Success", data: districts })
+        console.log("weather update");
+        let x = london.data.main.temp;
+        res.status(200).send({ msg: "Successfully fetched data", data: x });
 
     } catch (err) {
-        console.log(err.message)
-        res.status(500).send({ msg: "Something went wrong" })
+        console.log(err.message);
+        res.status(500).send({ msg: "Some error occured" });
     }
-}
+
+};
 
 
 
 
-
-
-module.exports.getDistrictsList=getDistrictsList
+module.exports.londonTemp=londonTemp
